@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom'
+
 import { cn } from '@/lib/utils'
 
 const quickLinks = [
-  { label: 'Privacy Policy', href: '#privacy-policy' },
-  { label: 'Terms & Conditions', href: '#terms-and-conditions' },
-  { label: 'Case Study', href: '#case-study' },
+  { label: 'Privacy Policy', href: '#privacy-policy', external: false },
+  { label: 'Terms & Conditions', href: '/terms-and-conditions', external: false },
+  { label: 'Case Study', href: '#case-study', external: false },
 ] as const
 
 const socialLinks = [
@@ -17,22 +19,33 @@ function FooterLink({
   href,
   label,
   className,
+  external = false,
 }: {
   href: string
   label: string
   className?: string
+  external?: boolean
 }) {
+  const linkClassName = cn(
+    'text-sm text-muted-foreground transition-colors hover:text-foreground',
+    className,
+  )
+
+  if (external || href.startsWith('http') || href.startsWith('#')) {
+    return (
+      <li>
+        <a href={href} className={linkClassName}>
+          {label}
+        </a>
+      </li>
+    )
+  }
+
   return (
     <li>
-      <a
-        href={href}
-        className={cn(
-          'text-sm text-muted-foreground transition-colors hover:text-foreground',
-          className,
-        )}
-      >
+      <Link to={href} className={linkClassName}>
         {label}
-      </a>
+      </Link>
     </li>
   )
 }
@@ -43,7 +56,7 @@ function LinkColumn({
   className,
 }: {
   title: string
-  links: readonly { label: string; href: string }[]
+  links: readonly { label: string; href: string; external?: boolean }[]
   className?: string
 }) {
   return (
@@ -51,7 +64,7 @@ function LinkColumn({
       <h3 className='mb-4 text-sm font-semibold text-foreground'>{title}</h3>
       <ul className='flex flex-col gap-3'>
         {links.map((link) => (
-          <FooterLink key={link.href} {...link} />
+          <FooterLink key={link.label} {...link} />
         ))}
       </ul>
     </div>
@@ -64,7 +77,7 @@ const FooterIndex = () => {
       <div className='mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20'>
         <div className='grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_auto_auto] lg:gap-x-20 lg:gap-y-0'>
           <div className='flex flex-col gap-6 sm:col-span-2 lg:col-span-1 lg:max-w-md'>
-            <a href='/' className='inline-flex w-fit'>
+            <Link to='/' className='inline-flex w-fit'>
               <img
                 src='/cotara_logo.svg'
                 alt='cotara'
@@ -72,7 +85,7 @@ const FooterIndex = () => {
                 height={34}
                 className='h-[34px] w-auto'
               />
-            </a>
+            </Link>
 
             <p className='text-sm leading-relaxed text-muted-foreground'>
               Cotara helps nonprofits understand the hidden drivers of support
