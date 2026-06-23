@@ -105,15 +105,19 @@ const PricingIndex = () => {
 
   return (
     <>
-      <section className='relative overflow-hidden'>
-        <img
-          src='/Header.svg'
-          alt=''
+      <section className='relative min-h-[601px] overflow-hidden bg-background'>
+        <div
           aria-hidden='true'
-          className='pointer-events-none absolute inset-x-0 top-0 h-auto w-full select-none'
-        />
+          className='pricing-hero-bg pointer-events-none absolute inset-x-0 top-0 w-full'
+        >
+          <img
+            src='/Header.svg'
+            alt=''
+            className='h-full min-h-[601px] w-full select-none object-cover object-top'
+          />
+        </div>
 
-        <div className='relative mx-auto max-w-[670px] pt-16 pb-10 text-center sm:pt-20 lg:pt-24'>
+        <div className='relative mx-auto max-w-[670px] px-4 pt-16 pb-10 text-center sm:px-6 sm:pt-20 lg:px-0 lg:pt-24'>
           <h1 className='text-3xl font-medium tracking-tight text-[#171717] sm:text-4xl lg:text-[52px] lg:leading-[54px] lg:tracking-[-2.44px]'>
             Pricing built for understanding and growing support
           </h1>
@@ -126,64 +130,64 @@ const PricingIndex = () => {
             <BillingToggle value={billing} onChange={setBilling} />
           </div>
         </div>
-      </section>
 
-      <section className='relative px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24'>
-        <div className='mx-auto max-w-[772px] border border-[#E3E3E3] p-3 rounded-[12px] bg-[#F9F9F9]'>
-          <div className='overflow-hidden '>
-            <div className='grid lg:grid-cols-[1fr_340px]'>
-              <div className='flex flex-col gap-6 p-6 sm:p-8 lg:pr-5 lg:pl-3'>
-                <div>
-                  <h2 className='text-2xl font-semibold text-[#171717]'>
-                    Growth Plan
-                  </h2>
-                  <p className='mt-3 text-base font-normal leading-[24px] text-[#73777F]'>
-                    For nonprofits ready to track support, influence, retention,
-                    and campaign performance continuously.
-                  </p>
-                </div>
-
-                <div>
-                  <p className='text-base font-normal leading-[24px] text-[#73777F]'>
-                    Starting at
-                  </p>
-                  <div className='mt-1 flex items-end gap-1'>
-                    <span className='text-4xl font-medium tracking-tight text-[#171717] sm:text-[42px]'>
-                      ${currentPricing.amount}
-                    </span>
-                    <span className='pb-1 text-base font-normal leading-[24px] text-[#73777F]'>
-                      {currentPricing.suffix}
-                    </span>
-                  </div>
-                  {billing === 'yearly' && (
-                    <p className='mt-1 text-xs text-brand'>
-                      Billed annually at $2,988/year
+        <div className='relative px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24'>
+          <div className='mx-auto max-w-[772px] border border-[#E3E3E3] p-3 rounded-[12px] bg-[#F9F9F9]'>
+            <div className='overflow-hidden '>
+              <div className='grid lg:grid-cols-[1fr_340px]'>
+                <div className='flex flex-col gap-6 p-6 sm:p-8 lg:pr-5 lg:pl-3'>
+                  <div>
+                    <h2 className='text-2xl font-semibold text-[#171717]'>
+                      Growth Plan
+                    </h2>
+                    <p className='mt-3 text-base font-normal leading-[24px] text-[#73777F]'>
+                      For nonprofits ready to track support, influence,
+                      retention, and campaign performance continuously.
                     </p>
-                  )}
+                  </div>
+
+                  <div>
+                    <p className='text-base font-normal leading-[24px] text-[#73777F]'>
+                      Starting at
+                    </p>
+                    <div className='mt-1 flex items-end gap-1'>
+                      <span className='text-4xl font-medium tracking-tight text-[#171717] sm:text-[42px]'>
+                        ${currentPricing.amount}
+                      </span>
+                      <span className='pb-1 text-base font-normal leading-[24px] text-[#73777F]'>
+                        {currentPricing.suffix}
+                      </span>
+                    </div>
+                    {billing === 'yearly' && (
+                      <p className='mt-1 text-xs text-brand'>
+                        Billed annually at $2,988/year
+                      </p>
+                    )}
+                  </div>
+
+                  <Button className='h-11 w-full text-sm rounded-lg bg-brand text-brand-foreground hover:bg-brand/90'>
+                    Get Started
+                  </Button>
+
+                  <div>
+                    <p className='text-base font-medium leading-[24px] text-[#73777F]'>
+                      What includes:
+                    </p>
+                    <ul className='mt-4 flex flex-col gap-3'>
+                      {features.map((feature) => (
+                        <FeatureItem key={feature}>{feature}</FeatureItem>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                <Button className='h-11 w-full text-sm rounded-lg bg-brand text-brand-foreground hover:bg-brand/90'>
-                  Get Started
-                </Button>
-
-                <div>
-                  <p className='text-base font-medium leading-[24px] text-[#73777F]'>
-                    What includes:
-                  </p>
-                  <ul className='mt-4 flex flex-col gap-3'>
-                    {features.map((feature) => (
-                      <FeatureItem key={feature}>{feature}</FeatureItem>
-                    ))}
-                  </ul>
+                <div className='relative min-h-[280px] lg:min-h-full'>
+                  <img
+                    src='/pricing-img.jpg'
+                    alt='Volunteers organizing supplies in a warehouse'
+                    className='h-full w-full object-cover lg:absolute lg:inset-0 rounded-[12px]'
+                  />
                 </div>
-              </div>
-
-              <div className='relative min-h-[280px] lg:min-h-full'>
-                <img
-                  src='/pricing-img.jpg'
-                  alt='Volunteers organizing supplies in a warehouse'
-                  className='h-full w-full object-cover lg:absolute lg:inset-0 rounded-[12px]'
-                />
               </div>
             </div>
           </div>

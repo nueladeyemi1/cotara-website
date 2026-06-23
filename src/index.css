@@ -53,3 +53,28 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
+
+.pricing-hero-bg {
+  height: 601px;
+  min-height: 601px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 28%,
+    rgb(0 0 0 / 0.92) 42%,
+    rgb(0 0 0 / 0.72) 56%,
+    rgb(0 0 0 / 0.42) 72%,
+    rgb(0 0 0 / 0.15) 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 28%,
+    rgb(0 0 0 / 0.92) 42%,
+    rgb(0 0 0 / 0.72) 56%,
+    rgb(0 0 0 / 0.42) 72%,
+    rgb(0 0 0 / 0.15) 86%,
+    transparent 100%
+  );
+}
