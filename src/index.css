@@ -78,3 +78,28 @@ body {
     transparent 100%
   );
 }
+
+.home-hero-bg {
+  height: 520px;
+  min-height: 520px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgb(0 0 0 / 0.15) 8%,
+    rgb(0 0 0 / 0.72) 28%,
+    #000 45%,
+    #000 72%,
+    rgb(0 0 0 / 0.72) 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgb(0 0 0 / 0.15) 8%,
+    rgb(0 0 0 / 0.72) 28%,
+    #000 45%,
+    #000 72%,
+    rgb(0 0 0 / 0.72) 88%,
+    transparent 100%
+  );
+}

@@ -1,72 +1,47 @@
-import { Link } from 'react-router-dom'
-
+import { AppNavLink } from '@/components/app-nav-link'
+import { CotaraLogo } from '@/components/cotara-logo'
 import { cn } from '@/lib/utils'
+import { footerQuickLinks, socialLinks } from '@/lib/navigation'
 
-const quickLinks = [
-  { label: 'Privacy Policy', href: '#privacy-policy', external: false },
-  { label: 'Terms & Conditions', href: '/terms-and-conditions', external: false },
-  { label: 'Case Study', href: '#case-study', external: false },
-] as const
-
-const socialLinks = [
-  { label: 'Facebook', href: 'https://facebook.com' },
-  { label: 'Instagram', href: 'https://instagram.com' },
-  { label: 'Linkedin', href: 'https://linkedin.com' },
-  { label: 'TikTok', href: 'https://tiktok.com' },
-] as const
-
-function FooterLink({
+function FooterExternalLink({
   href,
   label,
   className,
-  external = false,
 }: {
   href: string
   label: string
   className?: string
-  external?: boolean
 }) {
-  const linkClassName = cn(
-    'text-sm text-muted-foreground transition-colors hover:text-foreground',
-    className,
-  )
-
-  if (external || href.startsWith('http') || href.startsWith('#')) {
-    return (
-      <li>
-        <a href={href} className={linkClassName}>
-          {label}
-        </a>
-      </li>
-    )
-  }
-
   return (
     <li>
-      <Link to={href} className={linkClassName}>
+      <a
+        href={href}
+        target='_blank'
+        rel='noopener noreferrer'
+        className={cn(
+          'text-sm font-medium text-[#73777F] transition-colors hover:text-[#171717]',
+          className,
+        )}
+      >
         {label}
-      </Link>
+      </a>
     </li>
   )
 }
 
 function LinkColumn({
   title,
-  links,
+  children,
   className,
 }: {
   title: string
-  links: readonly { label: string; href: string; external?: boolean }[]
+  children: React.ReactNode
   className?: string
 }) {
   return (
     <div className={className}>
       <h3 className='mb-4 text-sm font-semibold text-foreground'>{title}</h3>
-      <ul className='flex flex-col gap-3'>
-        {links.map((link) => (
-          <FooterLink key={link.label} {...link} />
-        ))}
-      </ul>
+      <ul className='flex flex-col gap-3'>{children}</ul>
     </div>
   )
 }
@@ -77,15 +52,7 @@ const FooterIndex = () => {
       <div className='mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20'>
         <div className='grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_auto_auto] lg:gap-x-20 lg:gap-y-0'>
           <div className='flex flex-col gap-6 sm:col-span-2 lg:col-span-1 lg:max-w-md'>
-            <Link to='/' className='inline-flex w-fit'>
-              <img
-                src='/cotara_logo.svg'
-                alt='cotara'
-                width={134}
-                height={34}
-                className='h-[34px] w-auto'
-              />
-            </Link>
+            <CotaraLogo />
 
             <p className='text-sm leading-relaxed text-muted-foreground'>
               Cotara helps nonprofits understand the hidden drivers of support
@@ -103,8 +70,21 @@ const FooterIndex = () => {
             </div>
           </div>
 
-          <LinkColumn title='Quick Links' links={quickLinks} />
-          <LinkColumn title='Social' links={socialLinks} />
+          <LinkColumn title='Quick Links'>
+            {footerQuickLinks.map((link) => (
+              <li key={link.to}>
+                <AppNavLink to={link.to} end={link.end}>
+                  {link.label}
+                </AppNavLink>
+              </li>
+            ))}
+          </LinkColumn>
+
+          <LinkColumn title='Social'>
+            {socialLinks.map((link) => (
+              <FooterExternalLink key={link.href} {...link} />
+            ))}
+          </LinkColumn>
         </div>
       </div>
     </footer>
