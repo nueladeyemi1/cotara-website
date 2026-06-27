@@ -1,4 +1,14 @@
-const API_BASE = '/api/v1'
+function getApiBase(): string {
+  const baseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '')
+
+  if (import.meta.env.PROD && baseUrl) {
+    return `${baseUrl}/api/v1`
+  }
+
+  return '/api/v1'
+}
+
+const API_BASE = getApiBase()
 
 export interface PaginatedResponse<T> {
   items: T[]
