@@ -18,7 +18,7 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
     <AccordionPrimitive.Item
       data-slot='accordion-item'
       className={cn(
-        'overflow-hidden rounded-xl border border-transparent bg-white shadow-sm transition-all duration-300 ease-out data-open:border-brand data-open:shadow-md',
+        'overflow-hidden rounded-xl border border-transparent bg-white transition-all duration-300 ease-out data-open:border-brand',
         className,
       )}
       {...props}
@@ -36,14 +36,15 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot='accordion-trigger'
         className={cn(
-          'group/accordion-trigger flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-medium text-foreground transition-all outline-none focus-visible:ring-2 focus-visible:ring-brand/30',
+          'group/accordion-trigger flex w-full items-start justify-between gap-4 px-5 py-4 text-left text-sm font-medium text-foreground transition-all outline-none focus-visible:ring-2 focus-visible:ring-brand/30',
           className,
         )}
         {...props}
       >
         <span>{children}</span>
-        <span className='flex size-7 shrink-0 items-center justify-center text-brand transition-transform duration-300 ease-out group-aria-expanded/accordion-trigger:rotate-180'>
-          <CircleMinusIcon className='size-4.5' />
+        <span className='relative mt-0.5 flex size-4.5 shrink-0 items-center justify-center text-brand'>
+          <CirclePlusIcon className='absolute size-4.5 transition-all duration-300 ease-out group-aria-expanded/accordion-trigger:scale-0 group-aria-expanded/accordion-trigger:opacity-0' />
+          <CircleMinusIcon className='absolute size-4.5 scale-0 opacity-0 transition-all duration-300 ease-out group-aria-expanded/accordion-trigger:scale-100 group-aria-expanded/accordion-trigger:opacity-100' />
         </span>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
