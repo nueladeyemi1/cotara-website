@@ -144,7 +144,7 @@ const HomeIndex = () => {
             className='home-hero-bg pointer-events-none absolute left-1/2 top-0 z-0 w-screen -translate-x-1/2 -translate-y-16 sm:-translate-y-20 lg:-translate-y-24'
           >
             <img
-              src='/main-page-hero-bg.svg'
+              src='/main-page-hero-bg.jpg'
               alt=''
               className='h-full w-full select-none object-cover object-bottom'
             />
@@ -168,7 +168,7 @@ const HomeIndex = () => {
         />
       </section>
 
-      <section className='px-4 py-16 sm:px-6 lg:px-0 lg:py-24'>
+      <section className='px-4 py-16 sm:px-6 lg:px-0 lg:py-0 lg:pb-24'>
         <div
           ref={sectionHeadingRef}
           className='reveal-fade-up mx-auto max-w-4xl text-center'
