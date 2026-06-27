@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { useScrollReveal } from '@/hooks/use-scroll-animation'
 import {
   Accordion,
   AccordionContent,
@@ -8,6 +9,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { cn } from '@/lib/utils'
+import { Link } from 'react-router-dom'
 
 const features = [
   'Donor retention insights',
@@ -102,6 +104,9 @@ function FeatureItem({ children }: { children: string }) {
 const PricingIndex = () => {
   const [billing, setBilling] = useState<BillingPeriod>('monthly')
   const currentPricing = pricing[billing]
+  const heroRef = useScrollReveal<HTMLDivElement>()
+  const cardRef = useScrollReveal<HTMLDivElement>()
+  const faqRef = useScrollReveal<HTMLDivElement>()
 
   return (
     <>
@@ -117,7 +122,10 @@ const PricingIndex = () => {
           />
         </div>
 
-        <div className='relative mx-auto max-w-[670px] px-4 pt-16 pb-10 text-center sm:px-6 sm:pt-20 lg:px-0 lg:pt-24'>
+        <div
+          ref={heroRef}
+          className='reveal-fade-up relative mx-auto max-w-[670px] px-4 pt-16 pb-10 text-center sm:px-6 sm:pt-20 lg:px-0 lg:pt-24'
+        >
           <h1 className='text-3xl font-medium tracking-tight text-[#171717] sm:text-4xl lg:text-[52px] lg:leading-[54px] lg:tracking-[-2.44px]'>
             Pricing built for understanding and growing support
           </h1>
@@ -132,7 +140,10 @@ const PricingIndex = () => {
         </div>
 
         <div className='relative px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24'>
-          <div className='mx-auto max-w-[772px] border border-[#E3E3E3] p-3 rounded-[12px] bg-[#F9F9F9]'>
+          <div
+            ref={cardRef}
+            className='reveal-fade-up mx-auto max-w-[772px] border border-[#E3E3E3] p-3 rounded-[12px] bg-[#F9F9F9]'
+          >
             <div className='overflow-hidden '>
               <div className='grid lg:grid-cols-[1fr_340px]'>
                 <div className='flex flex-col gap-6 p-6 sm:p-8 lg:pr-5 lg:pl-3'>
@@ -165,9 +176,11 @@ const PricingIndex = () => {
                     )}
                   </div>
 
-                  <Button className='h-11 w-full text-sm rounded-lg bg-brand text-brand-foreground hover:bg-brand/90'>
-                    Get Started
-                  </Button>
+                  <Link to='https://cotara-fe.vercel.app/auth/signup'>
+                    <Button className='h-11 w-full text-sm rounded-lg bg-brand text-brand-foreground hover:bg-brand/90'>
+                      Get Started
+                    </Button>
+                  </Link>
 
                   <div>
                     <p className='text-base font-medium leading-[24px] text-[#73777F]'>
@@ -195,7 +208,10 @@ const PricingIndex = () => {
       </section>
 
       <section className='bg-muted/60 px-4 py-16 sm:px-6 lg:px-8 lg:py-24'>
-        <div className='mx-auto grid max-w-6xl gap-10 lg:flex lg:gap-[96px]'>
+        <div
+          ref={faqRef}
+          className='reveal-fade-up mx-auto grid max-w-6xl gap-10 lg:flex lg:gap-[96px]'
+        >
           <div className='max-w-[339px]'>
             <p className='text-xs font-normal leading-[24px] text-brand uppercase'>
               FAQ

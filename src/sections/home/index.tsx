@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRightIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { useScrollReveal, useStaggerReveal } from '@/hooks/use-scroll-animation'
 
 const featureCards = [
   {
@@ -60,7 +61,7 @@ function FeatureCard({
   return (
     <article
       className={cn(
-        'flex flex-col rounded-[20px] h-max border border-[#F0F1F2] bg-white p-3',
+        'stagger-item flex flex-col rounded-[20px] h-max border border-[#F0F1F2] bg-white p-3',
         offset && 'lg:mt-16',
       )}
     >
@@ -87,10 +88,18 @@ function FeatureCard({
 }
 
 const HomeIndex = () => {
+  const heroRef = useScrollReveal<HTMLDivElement>()
+  const dashboardRef = useScrollReveal<HTMLDivElement>()
+  const sectionHeadingRef = useScrollReveal<HTMLDivElement>()
+  const cardsRef = useStaggerReveal<HTMLDivElement>()
+
   return (
     <>
       <section className='relative overflow-hidden bg-background pb-10 lg:pb-16'>
-        <div className='mx-auto max-w-[760px] px-4 pt-14 text-center lg:text-left lg:max-w-[1200px] sm:px-6 sm:pt-16 lg:px-0 lg:pt-20'>
+        <div
+          ref={heroRef}
+          className='reveal-fade-up mx-auto max-w-[760px] px-4 pt-14 text-center lg:text-left lg:max-w-[1200px] sm:px-6 sm:pt-16 lg:px-0 lg:pt-20'
+        >
           <div className='inline-flex items-center gap-2 rounded-full border border-[#F2F2F2] bg-[#FFFFFF] pl-2.5 pr-[15px] py-[5px] lg:gap-11 text-xs font-medium tracking-wide text-brand uppercase'>
             {/* <span aria-hidden='true'>🔥</span>
             V2.0 IS LIVE. SEE RELEASE NOTE */}
@@ -112,9 +121,14 @@ const HomeIndex = () => {
           </p>
 
           <div className='mt-8 lg:mt-10 flex flex-col items-center justify-center lg:justify-start gap-2.5 sm:flex-row'>
-            <Button className='h-11 w-full rounded-[6px] bg-brand px-6 text-base font-medium text-brand-foreground hover:bg-brand/90 sm:w-auto'>
-              Get started
-            </Button>
+            <Link
+              to='https://cotara-fe.vercel.app/auth/signup'
+              className='w-full sm:w-auto'
+            >
+              <Button className='h-11 w-full rounded-[6px] bg-brand px-6 text-base font-medium text-brand-foreground hover:bg-brand/90 sm:w-auto'>
+                Get started
+              </Button>
+            </Link>
             <Link
               to='/pricing'
               className='inline-flex h-11 w-full items-center justify-center rounded-[6px] bg-[#171717] px-6 text-base font-medium text-white hover:bg-[#171717]/90 sm:w-auto'
@@ -136,7 +150,10 @@ const HomeIndex = () => {
             />
           </div>
 
-          <div className='relative z-10 mx-auto max-w-[1200px]'>
+          <div
+            ref={dashboardRef}
+            className='reveal-scale relative z-10 mx-auto max-w-[1200px]'
+          >
             <img
               src='/main-page-dashboard-img.png'
               alt='Cotara dashboard showing campaign analytics and community insights'
@@ -152,7 +169,10 @@ const HomeIndex = () => {
       </section>
 
       <section className='px-4 py-16 sm:px-6 lg:px-0 lg:py-24'>
-        <div className='mx-auto max-w-4xl text-center'>
+        <div
+          ref={sectionHeadingRef}
+          className='reveal-fade-up mx-auto max-w-4xl text-center'
+        >
           <p className='text-xs font-medium tracking-[0%] leading-4 text-brand uppercase'>
             How Cotara helps you grow
           </p>
@@ -167,7 +187,10 @@ const HomeIndex = () => {
           </p>
         </div>
 
-        <div className='mx-auto mt-12 grid max-w-[1200px] gap-3 sm:grid-cols-2 lg:grid-cols-4'>
+        <div
+          ref={cardsRef}
+          className='mx-auto mt-12 grid max-w-[1200px] gap-3 sm:grid-cols-2 lg:grid-cols-4'
+        >
           {featureCards.map((card) => (
             <FeatureCard key={card.title} {...card} />
           ))}

@@ -1,7 +1,14 @@
 import { CaseStudyCard } from './components'
 import { caseStudies } from './data'
+import {
+  useScrollReveal,
+  useStaggerReveal,
+} from '@/hooks/use-scroll-animation'
 
 const CaseStudyIndex = () => {
+  const heroRef = useScrollReveal<HTMLDivElement>()
+  const cardsRef = useStaggerReveal<HTMLDivElement>()
+
   return (
     <>
       <section className='relative min-h-[601px] overflow-hidden bg-background'>
@@ -16,7 +23,7 @@ const CaseStudyIndex = () => {
           />
         </div>
 
-        <div className='relative mx-auto max-w-[720px] px-4 pb-10 pt-16 text-center sm:px-6 sm:pt-20 lg:px-0 lg:pt-24'>
+        <div ref={heroRef} className='reveal-fade-up relative mx-auto max-w-[720px] px-4 pb-10 pt-16 text-center sm:px-6 sm:pt-20 lg:px-0 lg:pt-24'>
           <h1 className='text-3xl font-medium tracking-tight text-[#232325] sm:text-4xl lg:text-[52px] lg:leading-[54px] lg:tracking-[-2.44px]'>
             Use Case Stories
           </h1>
@@ -26,9 +33,9 @@ const CaseStudyIndex = () => {
           </p>
         </div>
         <div className='px-4 pb-20 sm:px-0 lg:px-0'>
-          <div className='mx-auto grid max-w-[1200px] grid-cols-1 gap-6 md:grid-cols-[1fr_1.5fr_1fr]'>
+          <div ref={cardsRef} className='mx-auto grid max-w-[1200px] grid-cols-1 gap-6 md:grid-cols-[1fr_1.5fr_1fr]'>
             {caseStudies.map((study) => (
-              <CaseStudyCard key={study.slug} study={study} />
+              <CaseStudyCard key={study.slug} study={study} className='stagger-item' />
             ))}
           </div>
         </div>

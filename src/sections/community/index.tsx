@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Search, Loader2 } from 'lucide-react'
 
 import { useCommunities, type Community } from '@/hooks/use-communities'
+import { useScrollReveal } from '@/hooks/use-scroll-animation'
 
 function useDebounce<T>(value: T, delay: number): T {
   const [debounced, setDebounced] = useState(value)
@@ -73,6 +74,7 @@ const CommunityIndex = () => {
   const [searchInput, setSearchInput] = useState('')
   const search = useDebounce(searchInput, 400)
   const sentinelRef = useRef<HTMLDivElement>(null)
+  const heroRef = useScrollReveal<HTMLDivElement>()
 
   const {
     data,
@@ -125,7 +127,7 @@ const CommunityIndex = () => {
         />
       </div>
 
-      <div className='relative mx-auto max-w-[660px] px-4 pt-16 text-center sm:px-6 sm:pt-20 lg:px-0 lg:pt-24'>
+      <div ref={heroRef} className='reveal-fade-up relative mx-auto max-w-[660px] px-4 pt-16 text-center sm:px-6 sm:pt-20 lg:px-0 lg:pt-24'>
         <h1 className='text-3xl font-medium tracking-tight text-[#171717] sm:text-4xl lg:text-[42px] lg:leading-[50px] lg:tracking-[-2px]'>
           Search by organization, community, or cause
         </h1>

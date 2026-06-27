@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { ArrowUpRight, Loader2 } from 'lucide-react'
 
 import { useCommunity } from '@/hooks/use-communities'
+import { useScrollReveal } from '@/hooks/use-scroll-animation'
 import { useCommunityCampaigns, type Campaign } from '@/hooks/use-campaigns'
 
 function formatCents(cents: number): string {
@@ -115,6 +116,7 @@ function CampaignSkeleton() {
 const CommunityDetailIndex = () => {
   const { slug = '' } = useParams<{ slug: string }>()
   const sentinelRef = useRef<HTMLDivElement>(null)
+  const headerRef = useScrollReveal<HTMLDivElement>()
 
   const { data: community, isLoading: communityLoading } = useCommunity(slug)
 
@@ -156,7 +158,7 @@ const CommunityDetailIndex = () => {
 
   return (
     <section className='mx-auto max-w-[1200px] px-4 pb-20 pt-10 sm:px-6 lg:px-0 lg:pt-14'>
-      <div className='mb-10'>
+      <div ref={headerRef} className='reveal-fade-up mb-10'>
         {communityLoading ? (
           <div className='animate-pulse'>
             <div className='h-4 w-24 rounded bg-[#F0F0F0]' />
