@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import NavbarIndex from './sections/navbar'
 import HomeIndex from './sections/home'
@@ -7,6 +8,9 @@ import TermsAndConditionIndex from './sections/terms-and-condition'
 import CaseStudyIndex from './sections/case-study'
 import CaseStudyDetailIndex from './sections/case-study/detail'
 import FooterIndex from './sections/footer'
+import PolicyIndex from './sections/policy'
+import CommunityIndex from './sections/community'
+import CommunityDetailIndex from './sections/community/detail'
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,19 +22,12 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   )
 }
 
-function PlaceholderPage({ title }: { title: string }) {
-  return (
-    <section className='px-4 py-24 sm:px-6 lg:px-8'>
-      <div className='mx-auto max-w-3xl text-center'>
-        <h1 className='text-3xl font-medium text-[#171717]'>{title}</h1>
-        <p className='mt-3 text-base text-[#73777F]'>Coming soon.</p>
-      </div>
-    </section>
-  )
-}
+
+const queryClient = new QueryClient()
 
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Routes>
         <Route
@@ -61,7 +58,7 @@ function App() {
           path='/privacy-policy'
           element={
             <AppLayout>
-              <PlaceholderPage title='Privacy Policy' />
+              <PolicyIndex />
             </AppLayout>
           }
         />
@@ -69,7 +66,15 @@ function App() {
           path='/communities'
           element={
             <AppLayout>
-              <PlaceholderPage title='Communities' />
+              <CommunityIndex />
+            </AppLayout>
+          }
+        />
+        <Route
+          path='/communities/:slug'
+          element={
+            <AppLayout>
+              <CommunityDetailIndex />
             </AppLayout>
           }
         />
@@ -91,6 +96,7 @@ function App() {
         />
       </Routes>
     </BrowserRouter>
+    </QueryClientProvider>
   )
 }
 

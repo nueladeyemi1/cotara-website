@@ -140,10 +140,15 @@ const HomeIndex = () => {
             <img
               src='/main-page-dashboard-img.png'
               alt='Cotara dashboard showing campaign analytics and community insights'
-              className='w-full rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.08)]'
+              className='w-full rounded-[29.08px] shadow-[0_0px_0px_1.04px_#E0E0E0]'
             />
           </div>
         </div>
+
+        <div
+          aria-hidden='true'
+          className='pointer-events-none absolute bottom-0 left-0 z-20 h-52 w-full bg-gradient-to-b from-transparent via-white to-white sm:h-64 lg:h-90'
+        />
       </section>
 
       <section className='px-4 py-16 sm:px-6 lg:px-0 lg:py-24'>
