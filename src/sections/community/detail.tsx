@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { ArrowUpRight, Loader2 } from 'lucide-react'
 
 import { useCommunity } from '@/hooks/use-communities'
@@ -85,12 +85,12 @@ function CampaignCard({ campaign }: { campaign: Campaign }) {
             {days !== null && `${days} Days · `}
             {formatCount(campaign.donationsCount)} Donations
           </p> */}
-          <a
-            href={`/campaigns/${campaign.slug}`}
+          <Link
+            to={`https://cotara-fe.vercel.app/user/campaign/public/donate/${campaign.slug}`}
             className='inline-flex size-8 items-center justify-center rounded-full border border-[#E3E3E3] text-[#171717] transition-colors hover:bg-[#F9F9F9]'
           >
             <ArrowUpRight className='size-3.5' />
-          </a>
+          </Link>
         </div>
       </div>
     </article>
