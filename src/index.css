@@ -79,6 +79,34 @@ body {
   );
 }
 
+/* Accordion animations */
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--accordion-panel-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--accordion-panel-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@theme inline {
+  --animate-accordion-down: accordion-down 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-accordion-up: accordion-up 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Scroll reveal animations */
 .reveal-fade-up,
 .reveal-fade-in,

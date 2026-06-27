@@ -1,5 +1,5 @@
 import { Accordion as AccordionPrimitive } from '@base-ui/react/accordion'
-import { MinusIcon, PlusIcon } from 'lucide-react'
+import { CircleMinusIcon, CirclePlusIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
@@ -13,15 +13,12 @@ function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
   )
 }
 
-function AccordionItem({
-  className,
-  ...props
-}: AccordionPrimitive.Item.Props) {
+function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   return (
     <AccordionPrimitive.Item
       data-slot='accordion-item'
       className={cn(
-        'overflow-hidden rounded-xl border border-transparent bg-white shadow-sm transition-colors data-open:border-brand data-open:shadow-md',
+        'overflow-hidden rounded-xl border border-transparent bg-white shadow-sm transition-all duration-300 ease-out data-open:border-brand data-open:shadow-md',
         className,
       )}
       {...props}
@@ -45,9 +42,8 @@ function AccordionTrigger({
         {...props}
       >
         <span>{children}</span>
-        <span className='flex size-7 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand'>
-          <PlusIcon className='size-4 group-aria-expanded/accordion-trigger:hidden' />
-          <MinusIcon className='hidden size-4 group-aria-expanded/accordion-trigger:block' />
+        <span className='flex size-7 shrink-0 items-center justify-center text-brand transition-transform duration-300 ease-out group-aria-expanded/accordion-trigger:rotate-180'>
+          <CircleMinusIcon className='size-4.5' />
         </span>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
