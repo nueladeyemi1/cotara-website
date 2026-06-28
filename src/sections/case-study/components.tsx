@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 
 import { cn } from '@/lib/utils'
 import type { CaseStudy, CaseStudySection } from './data'
+import { CaseStudyShareButton } from './share-button'
 
 function P({
   children,
@@ -72,8 +73,9 @@ function CaseStudyHero({
           {study.title}
         </h1>
 
-        <div className='mt-6 flex items-center gap-3'>
-          <div className=''>
+        <div className='mt-6 flex flex-wrap items-center justify-between gap-4'>
+          <div className='flex items-center gap-3'>
+            <div className=''>
             <svg
               width='52'
               height='52'
@@ -118,6 +120,13 @@ function CaseStudyHero({
             </p>
             <p className='text-[15px] text-[#BBBBBB]'>{study.readTime}</p>
           </div>
+          </div>
+
+          <CaseStudyShareButton
+            title={study.title}
+            slug={study.slug}
+            description={study.cardDescription}
+          />
         </div>
 
         <div className='mt-8 border-b border-[#E3E3E3]' />
@@ -164,6 +173,15 @@ export function CaseStudyDetailPage({ study }: { study: CaseStudy }) {
             </h2>
             <BulletList items={study.helpedThemSee.bullets} />
           </section>
+
+          <div className='mt-10 flex items-center justify-between gap-4 border-t border-[#E3E3E3] pt-8'>
+            <p className='text-sm text-[#73777F]'>Found this useful? Share it.</p>
+            <CaseStudyShareButton
+              title={study.title}
+              slug={study.slug}
+              description={study.cardDescription}
+            />
+          </div>
         </article>
       </CaseStudyHero>
     </>
@@ -187,6 +205,13 @@ export function CaseStudyCard({
       )}
       style={{ backgroundColor: study.accent }}
     >
+      <CaseStudyShareButton
+        title={study.title}
+        slug={study.slug}
+        description={study.cardDescription}
+        variant='icon'
+        className='absolute right-4 top-4 z-10'
+      />
       <img
         src={study.image}
         alt=''
