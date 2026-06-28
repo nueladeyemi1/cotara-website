@@ -4,7 +4,7 @@ import {
   Copy,
   // Facebook,
   // Linkedin,
-  Mail,
+  // Mail,
   MessageCircle,
   Share2,
   // Twitter,
