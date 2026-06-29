@@ -1,6 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+import { ScrollToTop } from './components/scroll-to-top'
 import NavbarIndex from './sections/navbar'
 import HomeIndex from './sections/home'
 import PricingIndex from './sections/pricing'
@@ -12,90 +13,47 @@ import PolicyIndex from './sections/policy'
 import CommunityIndex from './sections/community'
 import CommunityDetailIndex from './sections/community/detail'
 
-function AppLayout({ children }: { children: React.ReactNode }) {
+function AppLayout() {
   return (
     <>
       <NavbarIndex />
-      <main>{children}</main>
+      <main>
+        <Outlet />
+      </main>
       <FooterIndex />
     </>
   )
 }
-
 
 const queryClient = new QueryClient()
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <AppLayout>
-              <HomeIndex />
-            </AppLayout>
-          }
-        />
-        <Route
-          path='/pricing'
-          element={
-            <AppLayout>
-              <PricingIndex />
-            </AppLayout>
-          }
-        />
-        <Route
-          path='/terms-and-conditions'
-          element={
-            <AppLayout>
-              <TermsAndConditionIndex />
-            </AppLayout>
-          }
-        />
-        <Route
-          path='/privacy-policy'
-          element={
-            <AppLayout>
-              <PolicyIndex />
-            </AppLayout>
-          }
-        />
-        <Route
-          path='/communities'
-          element={
-            <AppLayout>
-              <CommunityIndex />
-            </AppLayout>
-          }
-        />
-        <Route
-          path='/communities/:slug'
-          element={
-            <AppLayout>
-              <CommunityDetailIndex />
-            </AppLayout>
-          }
-        />
-        <Route
-          path='/case-study'
-          element={
-            <AppLayout>
-              <CaseStudyIndex />
-            </AppLayout>
-          }
-        />
-        <Route
-          path='/case-study/:slug'
-          element={
-            <AppLayout>
-              <CaseStudyDetailIndex />
-            </AppLayout>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route path='/' element={<HomeIndex />} />
+            <Route path='/pricing' element={<PricingIndex />} />
+            <Route
+              path='/terms-and-conditions'
+              element={<TermsAndConditionIndex />}
+            />
+            <Route path='/privacy-policy' element={<PolicyIndex />} />
+            <Route path='/communities' element={<CommunityIndex />} />
+            <Route
+              path='/communities/:slug'
+              element={<CommunityDetailIndex />}
+            />
+            <Route path='/case-study' element={<CaseStudyIndex />} />
+            <Route
+              path='/case-study/:slug'
+              element={<CaseStudyDetailIndex />}
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </QueryClientProvider>
   )
 }
