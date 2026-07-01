@@ -107,6 +107,7 @@ const PricingIndex = () => {
   const heroRef = useScrollReveal<HTMLDivElement>()
   const cardRef = useScrollReveal<HTMLDivElement>()
   const faqRef = useScrollReveal<HTMLDivElement>()
+  const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL
 
   return (
     <>
@@ -176,7 +177,7 @@ const PricingIndex = () => {
                     )}
                   </div>
 
-                  <Link to='https://cotara-fe.vercel.app/auth/signup'>
+                  <Link to={`${FRONTEND_URL}/auth/signup`}>
                     <Button className='h-11 w-full text-sm rounded-lg bg-brand text-brand-foreground hover:bg-brand/90'>
                       Get Started
                     </Button>

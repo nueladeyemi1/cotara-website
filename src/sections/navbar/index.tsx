@@ -13,17 +13,18 @@ import {
 } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
 import { mainNavLinks } from '@/lib/navigation'
+import { FRONTEND_URL } from '@/lib/env'
 import { Link } from 'react-router-dom'
 
 function AuthButtons({ className }: { className?: string }) {
   return (
     <div className={cn('flex items-center gap-2', className)}>
-      <Link to='https://cotara-fe.vercel.app/auth/login'>
+      <Link to={`${FRONTEND_URL}/auth/login`}>
         <Button variant='outline' className='h-10 rounded-md px-5'>
           Log in
         </Button>
       </Link>
-      <Link to='https://cotara-fe.vercel.app/auth/signup'>
+      <Link to={`${FRONTEND_URL}/auth/signup`}>
         <Button className='h-10 rounded-md px-5'>Sign up</Button>
       </Link>
     </div>

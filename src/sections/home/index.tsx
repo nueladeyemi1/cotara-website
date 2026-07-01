@@ -93,6 +93,8 @@ const HomeIndex = () => {
   const sectionHeadingRef = useScrollReveal<HTMLDivElement>()
   const cardsRef = useStaggerReveal<HTMLDivElement>()
 
+  const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL
+
   return (
     <>
       <section className='relative overflow-hidden bg-background pb-10 lg:pb-16'>
@@ -122,7 +124,7 @@ const HomeIndex = () => {
 
           <div className='mt-8 lg:mt-10 flex flex-col items-center justify-center lg:justify-start gap-2.5 sm:flex-row'>
             <Link
-              to='https://cotara-fe.vercel.app/auth/signup'
+              to={`${FRONTEND_URL}/auth/signup`}
               className='w-full sm:w-auto'
             >
               <Button className='h-11 w-full rounded-[6px] bg-brand px-6 text-base font-medium text-brand-foreground hover:bg-brand/90 sm:w-auto'>

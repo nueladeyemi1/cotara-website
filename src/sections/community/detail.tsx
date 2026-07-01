@@ -5,6 +5,7 @@ import { ArrowUpRight, Loader2 } from 'lucide-react'
 import { useCommunity } from '@/hooks/use-communities'
 import { useScrollReveal } from '@/hooks/use-scroll-animation'
 import { useCommunityCampaigns, type Campaign } from '@/hooks/use-campaigns'
+import { FRONTEND_URL } from '@/lib/env'
 
 function formatCents(cents: number): string {
   return new Intl.NumberFormat('en-US', {
@@ -86,7 +87,7 @@ function CampaignCard({ campaign }: { campaign: Campaign }) {
             {formatCount(campaign.donationsCount)} Donations
           </p> */}
           <Link
-            to={`https://cotara-fe.vercel.app/user/campaign/public/donate/${campaign.slug}`}
+            to={`${FRONTEND_URL}/user/campaign/public/donate/${campaign.slug}`}
             className='inline-flex size-8 items-center justify-center rounded-full border border-[#E3E3E3] text-[#171717] transition-colors hover:bg-[#F9F9F9]'
           >
             <ArrowUpRight className='size-3.5' />
