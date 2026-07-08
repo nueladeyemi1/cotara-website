@@ -29,9 +29,24 @@ import { useScrollReveal } from '@/hooks/use-scroll-animation'
 //   return debounced
 // }
 
+const SIGNUP_URL = 'https://org.usecotara.com/auth/signup'
+
 function CommunityCard({ community }: { community: Community }) {
   return (
-    <article className='flex flex-col rounded-[12px] border border-[#E3E3E3] bg-[#F9F9F9]'>
+    <article
+      role='link'
+      tabIndex={0}
+      onClick={() => {
+        window.location.href = SIGNUP_URL
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          window.location.href = SIGNUP_URL
+        }
+      }}
+      className='flex cursor-pointer flex-col rounded-[12px] border border-[#E3E3E3] bg-[#F9F9F9]'
+    >
       <div className='m-2 flex h-[194px] items-center justify-center overflow-hidden rounded-[12px] border border-[#E3E3E3] bg-[#F9F9F9]'>
         {community.imageUrl && (
           <img
@@ -52,6 +67,7 @@ function CommunityCard({ community }: { community: Community }) {
         <Link
           // to={`/communities/${community.slug}`}
           to='/case-study'
+          onClick={(e) => e.stopPropagation()}
           className='mt-3 inline-flex items-center gap-2 text-sm font-medium text-[#171717]'
         >
           Explore use case
