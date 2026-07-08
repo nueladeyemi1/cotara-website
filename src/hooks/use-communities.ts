@@ -2,17 +2,17 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { apiFetch, type PaginatedResponse } from './api'
 
 export interface Community {
-  id: string
+  id: string | number
   name: string
-  slug: string
+  slug?: string
   description: string
-  imageUrl: string
-  ownerType: string
-  ownerId: string
-  visibility: string
-  isActive: boolean
-  createdAt: string
-  updatedAt: string
+  imageUrl?: string
+  ownerType?: string
+  ownerId?: string
+  visibility?: string
+  isActive?: boolean
+  createdAt?: string
+  updatedAt?: string
 }
 
 const PAGE_SIZE = 12
