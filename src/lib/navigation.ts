@@ -17,8 +17,8 @@ export const footerQuickLinks: NavItem[] = [
 ]
 
 export const socialLinks = [
-  { label: 'Facebook', href: 'https://facebook.com' },
-  { label: 'Instagram', href: 'https://instagram.com' },
-  { label: 'Linkedin', href: 'https://linkedin.com' },
+  { label: 'Facebook', href: 'https://facebook.com/usecotara' },
+  { label: 'Instagram', href: 'https://instagram.com/usecotara' },
+  { label: 'Linkedin', href: 'https://linkedin.com/company/usecotara' },
   // { label: 'TikTok', href: 'https://tiktok.com' },
 ] as const
