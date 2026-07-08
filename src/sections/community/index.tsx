@@ -16,6 +16,7 @@ import {
   // useCommunities,
   type Community,
 } from '@/hooks/use-communities'
+import { Seo } from '@/components/seo'
 import { useScrollReveal } from '@/hooks/use-scroll-animation'
 
 // function useDebounce<T>(value: T, delay: number): T {
@@ -199,6 +200,10 @@ const CommunityIndex = () => {
 
   return (
     <section className='relative min-h-[601px] overflow-hidden bg-background'>
+      <Seo
+        title='Communities'
+        description='Search by organization, community, or cause. See how Cotara helps faith groups, diaspora nonprofits, alumni networks, and more grow support.'
+      />
       <div
         aria-hidden='true'
         className='pricing-hero-bg pointer-events-none absolute inset-x-0 top-0 w-full'

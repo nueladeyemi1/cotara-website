@@ -1,5 +1,6 @@
 import { CaseStudyCard } from './components'
 import { caseStudies } from './data'
+import { Seo } from '@/components/seo'
 import {
   useScrollReveal,
   useStaggerReveal,
@@ -11,6 +12,10 @@ const CaseStudyIndex = () => {
 
   return (
     <>
+      <Seo
+        title='Use Case Stories'
+        description='Cotara does not just track donations. It reveals the hidden people, relationships, and actions that grow support. Read the case studies.'
+      />
       <section className='relative min-h-[601px] overflow-hidden bg-background'>
         <div
           aria-hidden='true'

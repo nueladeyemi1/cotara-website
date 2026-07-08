@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { Seo } from '@/components/seo'
 import { useScrollReveal } from '@/hooks/use-scroll-animation'
 import {
   Accordion,
@@ -50,7 +51,7 @@ const faqItems = [
     value: 'data-secure',
     question: 'Is my data secure?',
     answer:
-      'Yes. Cotara is built with secure, org-scoped data handling and non-custodial architecture designed for U.S. nonprofits.',
+      'Yes. Cotara is built with secure, org-scoped data handling and non-custodial architecture designed nonprofits.',
   },
 ] as const
 
@@ -111,6 +112,10 @@ const PricingIndex = () => {
 
   return (
     <>
+      <Seo
+        title='Pricing'
+        description='Simple, transparent pricing for nonprofits — turn your supporter data into retention, influence, and community growth insights.'
+      />
       <section className='relative min-h-[601px] overflow-hidden bg-background'>
         <div
           aria-hidden='true'

@@ -55,8 +55,8 @@ const FooterIndex = () => {
             <CotaraLogo />
 
             <p className='text-sm leading-relaxed text-muted-foreground'>
-              Cotara helps nonprofits understand the hidden drivers of support
-              — retention, influence, trust, community participation, and impact
+              Cotara helps nonprofits understand the hidden drivers of support —
+              retention, influence, trust, community participation, and impact
               visibility.
             </p>
 
@@ -65,7 +65,8 @@ const FooterIndex = () => {
                 © 2026 Cotara Technology LLC. All rights reserved.
               </p>
               <p className='text-xs text-muted-foreground/70'>
-                Secure. Non-custodial. Built for U.S. nonprofits.
+                Secure. Non-custodial. Built for non-profits based in North
+                America.
               </p>
             </div>
           </div>

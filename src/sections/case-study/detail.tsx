@@ -2,6 +2,7 @@ import { Navigate, useParams } from 'react-router-dom'
 
 import { CaseStudyDetailPage } from './components'
 import { getCaseStudyBySlug } from './data'
+import { Seo } from '@/components/seo'
 
 const CaseStudyDetailIndex = () => {
   const { slug } = useParams()
@@ -11,7 +12,18 @@ const CaseStudyDetailIndex = () => {
     return <Navigate to='/case-study' replace />
   }
 
-  return <CaseStudyDetailPage study={study} />
+  return (
+    <>
+      <Seo
+        title={study.title}
+        description={study.cardDescription}
+        image={study.image}
+        type='article'
+        canonicalPath={`/case-study/${study.slug}`}
+      />
+      <CaseStudyDetailPage study={study} />
+    </>
+  )
 }
 
 export default CaseStudyDetailIndex

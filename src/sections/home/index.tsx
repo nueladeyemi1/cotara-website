@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowUpRightIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { Seo } from '@/components/seo'
 import { cn } from '@/lib/utils'
 import { useScrollReveal, useStaggerReveal } from '@/hooks/use-scroll-animation'
 
@@ -97,6 +98,10 @@ const HomeIndex = () => {
 
   return (
     <>
+      <Seo
+        title='Nonprofit Supporter Intelligence'
+        description='Cotara helps nonprofits understand the hidden drivers of support — retention, influence, trust, community participation, and impact visibility.'
+      />
       <section className='relative overflow-hidden bg-background pb-10 lg:pb-16'>
         <div
           ref={heroRef}

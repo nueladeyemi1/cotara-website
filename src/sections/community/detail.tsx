@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { ArrowUpRight, Loader2 } from 'lucide-react'
 
 import { useCommunity } from '@/hooks/use-communities'
+import { Seo } from '@/components/seo'
 import { useScrollReveal } from '@/hooks/use-scroll-animation'
 import { useCommunityCampaigns, type Campaign } from '@/hooks/use-campaigns'
 import { FRONTEND_URL } from '@/lib/env'
@@ -159,6 +160,14 @@ const CommunityDetailIndex = () => {
 
   return (
     <section className='mx-auto max-w-[1200px] px-4 pb-20 pt-10 sm:px-6 lg:px-0 lg:pt-14'>
+      <Seo
+        title={community?.name ?? 'Community'}
+        description={
+          community?.name
+            ? `Explore active campaigns and supporters in the ${community.name} community on Cotara.`
+            : undefined
+        }
+      />
       <div ref={headerRef} className='reveal-fade-up mb-10'>
         {communityLoading ? (
           <div className='animate-pulse'>

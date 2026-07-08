@@ -1,5 +1,7 @@
 import { ArrowRightIcon } from 'lucide-react'
 
+import { Seo } from '@/components/seo'
+
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <h2 className='mt-10 text-base font-semibold text-[#171717] first:mt-0'>
@@ -35,6 +37,10 @@ function List({ items }: { items: readonly string[] }) {
 const TermsAndConditionIndex = () => {
   return (
     <>
+      <Seo
+        title='Terms & Conditions'
+        description='Read the terms and conditions for using Cotara.'
+      />
       <section className='relative min-h-[601px] overflow-hidden bg-background'>
         <div
           aria-hidden='true'
