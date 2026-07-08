@@ -9,10 +9,9 @@ const distDir = resolve(currentDir, '../dist')
 const template = readFileSync(join(distDir, 'index.html'), 'utf-8')
 
 const SITE_NAME = 'Cotara'
-const SITE_URL = (process.env.VITE_SITE_URL || 'https://usecotara.com').replace(
-  /\/$/,
-  '',
-)
+const SITE_URL = (
+  process.env.VITE_SITE_URL || 'https://www.usecotara.com'
+).replace(/\/$/, '')
 const DEFAULT_DESCRIPTION =
   'Cotara helps nonprofits turn fragmented supporter data into clear intelligence about who gives, who returns, who invites others, and what actions grow support.'
 const DEFAULT_OG_IMAGE = '/community.jpg'

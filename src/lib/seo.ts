@@ -1,7 +1,7 @@
 export const SITE_NAME = 'Cotara'
 
 export const SITE_URL = (
-  import.meta.env.VITE_SITE_URL || 'https://usecotara.com'
+  import.meta.env.VITE_SITE_URL || 'https://www.usecotara.com'
 ).replace(/\/$/, '')
 
 export const DEFAULT_DESCRIPTION =
