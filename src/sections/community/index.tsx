@@ -52,7 +52,11 @@ function CommunityCard({ community }: { community: Community }) {
         {community.imageUrl && (
           <img
             src={community.imageUrl}
-            alt=''
+            alt={
+              community.imageUrl.includes('community.jpg')
+                ? 'Cotara: Relationship Intelligence for Fundraising'
+                : community.name
+            }
             className='h-full w-full rounded-xl object-cover'
           />
         )}

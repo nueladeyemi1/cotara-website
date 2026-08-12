@@ -12,9 +12,12 @@ const SITE_NAME = 'Cotara'
 const SITE_URL = (
   process.env.VITE_SITE_URL || 'https://www.usecotara.com'
 ).replace(/\/$/, '')
+const DEFAULT_TITLE = 'Relationship Intelligence for Fundraising'
 const DEFAULT_DESCRIPTION =
-  'Cotara helps nonprofits turn fragmented supporter data into clear intelligence about who gives, who returns, who invites others, and what actions grow support.'
+  'Help nonprofits understand what brings supporters in, what keeps them connected, and what action to take next.'
 const DEFAULT_OG_IMAGE = '/community.jpg'
+const DEFAULT_OG_IMAGE_ALT =
+  'Cotara: Relationship Intelligence for Fundraising'
 
 type Route = {
   path: string
@@ -52,8 +55,8 @@ function upsertMeta(
 }
 
 function renderRoute(route: Route): string {
-  const fullTitle = `${route.title} | ${SITE_NAME}`
-  const description = route.description ?? DEFAULT_DESCRIPTION
+  const fullTitle = DEFAULT_TITLE
+  const description = DEFAULT_DESCRIPTION
   const image = route.image ?? DEFAULT_OG_IMAGE
   const imageUrl = image.startsWith('http') ? image : `${SITE_URL}${image}`
   const url = `${SITE_URL}${route.path}`
@@ -73,10 +76,12 @@ function renderRoute(route: Route): string {
   html = upsertMeta(html, 'property', 'og:description', description)
   html = upsertMeta(html, 'property', 'og:url', url)
   html = upsertMeta(html, 'property', 'og:image', imageUrl)
+  html = upsertMeta(html, 'property', 'og:image:alt', DEFAULT_OG_IMAGE_ALT)
   html = upsertMeta(html, 'name', 'twitter:card', 'summary_large_image')
   html = upsertMeta(html, 'name', 'twitter:title', fullTitle)
   html = upsertMeta(html, 'name', 'twitter:description', description)
   html = upsertMeta(html, 'name', 'twitter:image', imageUrl)
+  html = upsertMeta(html, 'name', 'twitter:image:alt', DEFAULT_OG_IMAGE_ALT)
 
   const canonicalTag = `<link rel="canonical" href="${url}" />`
   if (/<link[^>]*\brel=["']canonical["'][^>]*>/i.test(html)) {
